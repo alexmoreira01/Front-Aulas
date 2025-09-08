@@ -1,0 +1,239 @@
+/* Reset básico - remove margens e paddings padrão */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Corpo da página - container principal */
+body {
+    font-family: 'Roboto', sans-serif;
+    height: 100%;
+    text-align: center;
+    background: radial-gradient(circle, rgba(30, 75, 89, 1) 0%, rgba(74, 158, 157, 1) 100%);
+}
+
+/* Container principal da calculadora - centraliza todo o conteúdo */
+.container {
+    width: fit-content;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+}
+
+/* Título principal "Simple Calculator" */
+h1 {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Formulário da calculadora - contém todos os campos */
+.calculator-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Linha dos números - contém os dois inputs lado a lado */
+.numbers-row {
+    display: flex;
+    gap: 15px;
+}
+
+/* Grupo de input - contém label, campo e mensagem de erro */
+.input-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Labels dos campos (Number 1, Number 2) */
+label {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 14px;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Campos de entrada de números */
+input[type="number"] {
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: #2c3e50;
+}
+
+/* Estado de foco dos campos de entrada */
+input[type="number"]:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Linha dos operadores - contém os 4 botões */
+.operators-row {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Botões dos operadores (+, -, *, /) */
+.operator-btn {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #2c3e50;
+}
+
+/* Estado hover dos botões operadores */
+.operator-btn:hover {
+    background: rgba(255, 255, 255, 0.85);
+    border-color: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado ativo/clicado dos botões operadores */
+.operator-btn:active {
+    background: rgba(255, 255, 255, 0.65);
+}
+
+/* Botão operador selecionado */
+.operator-btn.selected {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Container do resultado - área especial para mostrar o resultado */
+.result-group {
+    margin-top: 10px;
+}
+
+/* Campo de input do resultado */
+.result-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 16px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    text-align: center;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Container das mensagens de erro */
+.error-messages {
+    min-height: 20px;
+}
+
+/* Mensagens de erro - aparecem quando há validação incorreta */
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+/* Classe para mostrar mensagens de erro - aplicada dinamicamente via JavaScript */
+.error-message.show {
+    opacity: 1;
+}
+
+/* Classe para campos com erro - aplicada dinamicamente via JavaScript */
+.input-error {
+    border-color: #dc3545 !important;
+    background-color: #f8d7da !important;
+}
+
+/* Classe para animação de sucesso - aplicada quando cálculo é realizado */
+.success-animation {
+    animation: successPulse 0.3s ease;
+}
+
+@keyframes successPulse {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Media query para tablets - telas até 600px */
+@media (max-width: 600px) {
+    .container {
+        margin: 20px;
+        padding: 20px;
+    }
+
+    .numbers-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .operators-row {
+        flex-wrap: wrap;
+    }
+
+    .operator-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+    }
+}
+
+/* Media query para celulares - telas até 400px */
+@media (max-width: 400px) {
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    .operator-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+}
